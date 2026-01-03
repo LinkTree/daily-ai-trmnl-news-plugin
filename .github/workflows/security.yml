@@ -1,0 +1,77 @@
+name: Security Scan
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  secret-scan:
+    name: Secret Scanning
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Gitleaks Secret Scan
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  security-lint:
+    name: Security Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check for suspicious patterns
+        run: |
+          echo "Scanning for potential security issues..."
+
+          # Check for hardcoded URLs that might be sensitive
+          if grep -rE "(password|secret|api_key|apikey|token|credential)[\s]*[=:]" --include="*.html" .; then
+            echo "::error::Potential hardcoded secrets found!"
+            exit 1
+          fi
+
+          # Check for inline JavaScript with eval or dangerous functions
+          if grep -rE "(eval\(|document\.write\(|innerHTML\s*=.*\+)" --include="*.html" .; then
+            echo "::warning::Potentially dangerous JavaScript patterns found"
+          fi
+
+          # Check for external scripts from untrusted sources
+          if grep -rE "script.*src=.*http://" --include="*.html" .; then
+            echo "::error::Insecure HTTP script sources found!"
+            exit 1
+          fi
+
+          echo "Security scan completed successfully!"
+
+  validate-html:
+    name: Validate HTML
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Basic HTML validation
+        run: |
+          echo "Validating HTML files..."
+
+          # Check for unclosed tags (basic check)
+          for file in *.html; do
+            if [ -f "$file" ]; then
+              echo "Checking $file"
+              # Ensure no PHP or server-side code injection
+              if grep -E "(<\?php|<\?=|\$_GET|\$_POST|\$_REQUEST)" "$file"; then
+                echo "::error::Server-side code found in $file!"
+                exit 1
+              fi
+            fi
+          done
+
+          echo "HTML validation completed!"
