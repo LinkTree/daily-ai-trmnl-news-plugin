@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Daily AI News - TRMNL Plugin Preview</title>
+  <style>
+    /* Preview wrapper */
+    .preview-page {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      padding: 40px;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+    .preview-title {
+      color: #fff;
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 24px;
+      font-weight: 300;
+    }
+    .preview-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 60px;
+    }
+    .device-wrapper {
+      text-align: center;
+    }
+    .device-label {
+      color: rgba(255,255,255,0.6);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+    .device-frame {
+      background: #0a0a0a;
+      padding: 16px;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .e-ink-screen {
+      background: #f5f5f5;
+      border-radius: 4px;
+      text-align: left;
+    }
+
+    /* TRMNL Framework Simulation */
+    .view {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .view--full {
+      padding: 16px;
+      box-sizing: border-box;
+    }
+    .layout {
+      display: flex;
+    }
+    .layout--col {
+      flex-direction: column;
+    }
+    .gap--space-between {
+      flex: 1;
+      justify-content: space-between;
+    }
+    .grid {
+      display: grid;
+      gap: 12px;
+    }
+    .grid--cols-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .item {
+      /* Base item styling */
+    }
+    .content {
+      display: flex;
+      flex-direction: column;
+    }
+    .title {
+      font-size: 16px;
+      font-weight: bold;
+      line-height: 1.3;
+      color: #000;
+    }
+    .title--small {
+      font-size: 13px;
+    }
+    .description {
+      font-size: 11px;
+      line-height: 1.3;
+      color: #333;
+      margin-top: 2px;
+    }
+    .label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #666;
+    }
+    .label--small {
+      font-size: 9px;
+    }
+    .label--underline {
+      text-decoration: underline;
+    }
+    .title_bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-top: 10px;
+      border-top: 2px solid #000;
+      margin-top: auto;
+    }
+    .title_bar .image {
+      width: 20px;
+      height: 20px;
+    }
+    .title_bar .title {
+      font-size: 12px;
+      font-weight: bold;
+      text-transform: none;
+    }
+    .title_bar .instance {
+      font-size: 10px;
+      color: #666;
+      margin-left: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="preview-page">
+    <h1 class="preview-title">Daily AI News - TRMNL Plugin Preview</h1>
+
+    <div class="preview-container">
+
+      <!-- Full Screen Layout -->
+      <div class="device-wrapper">
+        <div class="device-label">Full Screen Layout (800 x 480)</div>
+        <div class="device-frame">
+          <div class="e-ink-screen" style="width: 800px; height: 480px;">
+
+            <!-- Main Layout -->
+            <div class="view view--full">
+              <div class="layout layout--col gap--space-between">
+
+                <!-- Stories Section -->
+                <div class="layout layout--col" style="gap: 8px;">
+                  <div class="item" style="padding-bottom: 8px; border-bottom: 1px solid rgba(0,0,0,0.15);">
+                    <div class="content">
+                      <span class="title title--small">ByteDance orders $54 billion in Nvidia AI chips</span>
+                      <span class="description">Chinese companies are placing massive orders for Nvidia chips, with ByteDance alone planning $14 billion spend in 2026, representing significant revenue...</span>
+                    </div>
+                  </div>
+                  <div class="item" style="padding-bottom: 8px; border-bottom: 1px solid rgba(0,0,0,0.15);">
+                    <div class="content">
+                      <span class="title title--small">OpenAI launches screenless voice-first AI devices</span>
+                      <span class="description">OpenAI is reorganizing teams to release audio-first hardware including an AI pen called 'Gumdrop' and portable audio device within a year...</span>
+                    </div>
+                  </div>
+                  <div class="item" style="padding-bottom: 8px; border-bottom: 1px solid rgba(0,0,0,0.15);">
+                    <div class="content">
+                      <span class="title title--small">DeepSeek publishes efficient AI training method</span>
+                      <span class="description">DeepSeek's new mCH framework drastically reduces computational and energy demands for training frontier AI models, potentially transforming AI deve...</span>
+                    </div>
+                  </div>
+                  <div class="item" style="padding-bottom: 8px; border-bottom: 1px solid rgba(0,0,0,0.15);">
+                    <div class="content">
+                      <span class="title title--small">Robotaxi market accelerates with multiple competitors</span>
+                      <span class="description">Waymo gains market share rapidly while Tesla's Cybercab launches this year and Uber struggles to define its strategy in the growing autonomous vehi...</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Bottom Section: Image + Actions -->
+                <div class="grid grid--cols-2" style="margin-top: 8px;">
+                  <!-- Left: Image + Episode Title -->
+                  <div class="item">
+                    <div class="content" style="text-align: center;">
+                      <img src="https://static.dailyaibyai.news/images/ai-newsletter-2026-01-03-attempt-1.png" alt="Daily AI" style="width: 180px; height: 100px; object-fit: cover; border-radius: 6px; filter: grayscale(100%) contrast(1.2);" />
+                      <span class="label label--small" style="margin-top: 6px; display: block;">OpenAI Launches Voice-First Hardware with Jony Ive Partnership</span>
+                    </div>
+                  </div>
+
+                  <!-- Right: Action Items -->
+                  <div class="item">
+                    <div class="content">
+                      <span class="label label--underline" style="margin-bottom: 6px; display: block;">What You Should Do</span>
+                      <span class="description" style="display: block; margin-bottom: 4px; padding-left: 12px; position: relative;">
+                        <span style="position: absolute; left: 0;">&#8594;</span>
+                        Pilot voice-first interfaces within your organization by identifying specific use cases like...
+                      </span>
+                      <span class="description" style="display: block; margin-bottom: 4px; padding-left: 12px; position: relative;">
+                        <span style="position: absolute; left: 0;">&#8594;</span>
+                        Audit current product interfaces for voice-readiness and identify integration opportunities
+                      </span>
+                      <span class="description" style="display: block; margin-bottom: 4px; padding-left: 12px; position: relative;">
+                        <span style="position: absolute; left: 0;">&#8594;</span>
+                        Establish vendor evaluation frameworks for voice AI with focus on privacy and latency...
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Footer -->
+              <div class="title_bar">
+                <img class="image" src="https://usetrmnl.com/images/plugins/trmnl--render.svg" />
+                <span class="title">DAILY AI | AI News, By AI</span>
+                <span class="instance">2026-01-03 | dailyaibyai.news</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

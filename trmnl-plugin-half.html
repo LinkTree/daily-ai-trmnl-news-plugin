@@ -1,0 +1,49 @@
+<!-- Half Vertical Layout -->
+<div class="layout layout--col gap--space-between">
+
+  <!-- Header with Image -->
+  <div class="grid grid--cols-2 gap--small" style="align-items: center;">
+    <div class="item">
+      <img src="{{ image_url }}" alt="Daily AI" style="width: 60px; height: 60px; object-fit: cover; border-radius: 6px; filter: grayscale(100%) contrast(1.2);" />
+    </div>
+    <div class="item">
+      <div class="content">
+        <span class="label label--small">Daily AI | {{ date | date: "%b %e, %Y" }}</span>
+        <span class="title title--small">{{ title | truncate: 50 }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stories -->
+  <div class="layout layout--col gap--xsmall mt--small">
+    {% for story in stories limit:3 %}
+    <div class="item pb--xsmall" style="border-bottom: 1px solid rgba(0,0,0,0.15);">
+      <div class="content">
+        <span class="title title--small" data-clamp="1">{{ story.headline | truncate: 45 }}</span>
+        <span class="description" data-clamp="1">{{ story.summary | truncate: 60 }}</span>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- Actions -->
+  <div class="item p--small mt--xsmall" style="background: rgba(0,0,0,0.05); border-radius: 4px;">
+    <div class="content">
+      <span class="label label--small label--underline mb--xsmall">Action Items</span>
+      {% for item in action_items limit:2 %}
+      <span class="description mb--xsmall" style="display: block; padding-left: 12px; position: relative;">
+        <span style="position: absolute; left: 0;">&#8594;</span>
+        {{ item | truncate: 40 }}
+      </span>
+      {% endfor %}
+    </div>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<div class="title_bar">
+  <img class="image" src="https://usetrmnl.com/images/plugins/trmnl--render.svg" />
+  <span class="title">Daily AI by AI</span>
+  <span class="instance">{{ date | date: "%b %e, %Y" }} | dailyaibyai.news</span>
+</div>

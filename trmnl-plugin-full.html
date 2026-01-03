@@ -1,0 +1,47 @@
+<!-- Main Layout -->
+<div class="layout layout--col gap--space-between">
+
+  <!-- Stories Section -->
+  <div class="layout layout--col gap--small">
+    {% for story in stories limit:3 %}
+    <div class="item pb--small" style="border-bottom: 1px solid rgba(0,0,0,0.15);">
+      <div class="content">
+        <span class="title title--small">{{ story.headline }}</span>
+        <span class="description">{{ story.summary }}</span>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- Bottom Section: Image + Actions -->
+  <div class="grid grid--cols-3 gap--medium mt--small" style="align-items: start;">
+    <!-- Left: Image + Episode Title (1/3) -->
+    <div class="item col--span-1">
+      <div class="content">
+        <img src="{{ image_url }}" alt="Daily AI" class="w--full" style="height: 100px; object-fit: cover; border-radius: 6px; filter: grayscale(100%) contrast(1.2);" />
+        <span class="label label--small mt--small">{{ title }}</span>
+      </div>
+    </div>
+
+    <!-- Right: Action Items (2/3) -->
+    <div class="item col--span-2">
+      <div class="content">
+        <span class="label label--underline mb--small">What You Should Do Today</span>
+        {% for item in action_items limit:3 %}
+        <span class="description mb--xsmall" style="display: block; padding-left: 12px; position: relative;">
+          <span style="position: absolute; left: 0;">&#8594;</span>
+          {{ item }}
+        </span>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<div class="title_bar">
+  <img class="image" src="https://usetrmnl.com/images/plugins/trmnl--render.svg" />
+  <span class="title">Daily AI by AI</span>
+  <span class="instance">{{ date | date: "%b %e, %Y" }} | dailyaibyai.news</span>
+</div>

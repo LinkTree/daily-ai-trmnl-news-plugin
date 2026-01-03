@@ -1,0 +1,23 @@
+<!-- Half Horizontal Layout - Top 2 Stories -->
+<div class="layout layout--col gap--space-between">
+
+  <!-- Stories Section -->
+  <div class="layout layout--col gap--small">
+    {% for story in stories limit:2 %}
+    <div class="item pb--small" style="border-bottom: 1px solid rgba(0,0,0,0.15);">
+      <div class="content">
+        <span class="title title--small">{{ story.headline }}</span>
+        <span class="description">{{ story.summary }}</span>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+</div>
+
+<!-- Footer -->
+<div class="title_bar">
+  <img class="image" src="https://usetrmnl.com/images/plugins/trmnl--render.svg" />
+  <span class="title">Daily AI by AI</span>
+  <span class="instance">{{ date | date: "%b %e, %Y" }} | dailyaibyai.news</span>
+</div>
